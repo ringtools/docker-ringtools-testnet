@@ -1,0 +1,30 @@
+{
+  "port": "3000",
+  "defaultNodeIndex": 1,
+  "SSO": {
+    "rtlSSO": 0,
+    "rtlCookiePath": "",
+    "logoutRedirectLink": ""
+  },
+  "nodes": [
+    {
+      "index": 1,
+      "lnNode": "LND Testnet",
+      "lnImplementation": "LND",
+      "Authentication": {
+        "macaroonPath": "/lnd/data/chain/bitcoin/testnet",
+        "configPath": "/lnd/lnd.conf"
+      },
+      "Settings": {
+        "userPersona": "MERCHANT",
+        "themeMode": "NIGHT",
+        "themeColor": "YELLOW",
+        "channelBackupPath": "/root/backup/node-1",
+        "logLevel": "ERROR",
+        "lnServerUrl": "https://10.72.64.3:8080",
+        "fiatConversion": false
+      }
+    }
+  ],
+  "multiPassHashed": "0b14d501a594442a01c6859541bcb3e8164d183d32937b851835442f69d5c94e"
+}

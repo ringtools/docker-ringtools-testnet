@@ -1,0 +1,54 @@
+version: "3.7"
+
+services:
+  lnd:
+    image: lightninglabs/lnd:v0.14.1-beta
+    user: 1000:1000
+    volumes:
+      - ./lnd:/data/.lnd
+    environment:
+      HOME: /data
+    restart: on-failure
+    stop_grace_period: 5m30s
+    depends_on: [ tor ]
+    networks:
+      default:
+        ipv4_address: 10.72.64.3
+  rtl:
+    image: shahanafarooqui/rtl:0.12.0
+    ports:
+      - 3000:3000
+    volumes:
+      - ./rtl:/shared
+      - ./lnd:/lnd:ro
+    depends_on: [ lnd  ]
+    environment:
+      PORT: 3000
+      HOST: 0.0.0.0
+      RTL_SSO: 0
+      RTL_COOKIE_PATH: ''
+      LOGOUT_REDIRECT_LINK: ''
+      RTL_CONFIG_PATH: /shared/config
+      BITCOIND_CONFIG_PATH: ''
+      CHANNEL_BACKUP_PATH: /shared/backup
+    networks:
+      default:
+        ipv4_address: 10.72.64.4
+  tor:
+    image: lncm/tor:0.4.6.8
+    user: toruser
+    restart: on-failure
+    volumes:
+      - ./tor/torrc:/etc/tor/torrc
+      - ./tor/data:/var/lib/tor/
+    networks:
+      default:
+        ipv4_address: 10.72.64.2
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.72.64.0/24
+      driver: default
+    name: lnd_testnet

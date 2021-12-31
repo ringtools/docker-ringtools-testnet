@@ -1,0 +1,6 @@
+# Bind only to "10.21.21.11" which is the tor IP within the container
+SocksPort   0.0.0.0:9050
+ControlPort 0.0.0.0:29051
+
+# docker run --rm --name tor lncm/tor:0.4.6.7 --hash-password ringtools_unsafe_password
+HashedControlPassword 16:47D110F6665E0C5260E24C3E659B01E83BAD0B2BFD3B5642ECEBDF5FAE

@@ -1,0 +1,7 @@
+lnd/data/*
+lnd/letsencrypt/*
+lnd/logs/*
+lnd/tls.*
+tor/data
+rtl/backup
+rtl/config/logs
