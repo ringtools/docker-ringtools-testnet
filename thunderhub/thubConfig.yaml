@@ -1,0 +1,6 @@
+masterPassword: thunderhub-$2a$12$ketO3S8v9EVZkOQnV0EdC.MUGZpakmwzeHHLchtSK0FSmzNSimEIO
+accounts:
+  - name: Ringtools Testnet
+    serverUrl: 10.72.64.3:10009
+    certificatePath: /lnd/tls.cert
+    macaroonPath: /lnd/data/chain/bitcoin/testnet/admin.macaroon

@@ -1,6 +1,25 @@
 version: "3.7"
 
 services:
+  thunderhub:
+    image:  apotdevin/thunderhub:v0.12.31
+    user: "1000:1000"
+    restart: on-failure
+    stop_grace_period: 1m
+    depends_on: [ lnd ]
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./lnd:/lnd:ro
+      - ./thunderhub:/data
+    environment:
+      APP_PASSWORD: unsafepw
+      NO_VERSION_CHECK: "true"
+      ACCOUNT_CONFIG_PATH: "/data/thubConfig.yaml"
+      TOR_PROXY_SERVER: "socks://10.72.64.2:9050"
+    networks:
+      default:
+        ipv4_address: 10.72.64.5
   lnd:
     image: lightninglabs/lnd:v0.14.1-beta
     user: 1000:1000
