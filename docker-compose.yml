@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   thunderhub:
-    image:  apotdevin/thunderhub:v0.12.31
+    image:  apotdevin/thunderhub:v0.13.21
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
@@ -21,7 +21,8 @@ services:
       default:
         ipv4_address: 10.72.64.5
   lnd:
-    image: lightninglabs/lnd:v0.14.1-beta
+    # v0.16.4-beta 
+    image: lightninglabs/lnd:v0.16.4-beta 
     user: 1000:1000
     volumes:
       - ./lnd:/data/.lnd
@@ -34,7 +35,7 @@ services:
       default:
         ipv4_address: 10.72.64.3
   rtl:
-    image: shahanafarooqui/rtl:0.12.0
+    image: shahanafarooqui/rtl:0.14.0
     ports:
       - 3000:3000
     volumes:
@@ -54,7 +55,7 @@ services:
       default:
         ipv4_address: 10.72.64.4
   tor:
-    image: lncm/tor:0.4.6.8
+    image: lncm/tor:0.4.7.13
     user: toruser
     restart: on-failure
     volumes:
@@ -63,7 +64,6 @@ services:
     networks:
       default:
         ipv4_address: 10.72.64.2
-
 networks:
   default:
     ipam:
